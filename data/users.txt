@@ -22,4 +22,5 @@ Catherine Leclerc|USR021|
 Antoine Dubois|USR022|
 Nathalie Guerin|USR023|
 Olivier Masson|USR024|
-Valérie Simon|USR025|
+Valérie Simon|USR025|9782070381018
+||

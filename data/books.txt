@@ -38,4 +38,4 @@ Les Caractères|Jean de La Bruyère|9782070380970|1|
 Maximes|La Rochefoucauld|9782070380987|1|
 Pensées|Blaise Pascal|9782070380994|0|USR014
 Lettres persanes|Montesquieu|9782070381001|1|
-De l'esprit des lois|Montesquieu|9782070381018|1|
+De l'esprit des lois|Montesquieu|9782070381018|0|USR025

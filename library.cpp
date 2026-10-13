@@ -115,6 +115,22 @@ vector<User*> Library::getAllUsers() {
     return allUsers;
 }
 
+// Ajout
+// get user name from id
+string Library::getUserName(const string& userId) {
+    User* user = findUserById(userId);
+    string name;
+
+    if (user) {
+        name = user->getName();
+    } else {
+        name = "Utilisateur invalide";
+    }
+
+    return name;
+}
+
+
 // Check out book
 bool Library::checkOutBook(const string& isbn, const string& userId) {
     Book* book = findBookByISBN(isbn);
@@ -156,7 +172,7 @@ void Library::displayAllBooks() {
     cout << "\n=== TOUS LES LIVRES ===\n";
     for (size_t i = 0; i < books.size(); ++i) {
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << books[i]->toString() << "\n";
+        cout << books[i]->toString(getUserName(books[i]->getBorrowerId())) << "\n"; //modifié
         cout << "-------------------------\n";
     }
 }

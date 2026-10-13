@@ -37,7 +37,7 @@ void Book::returnBook() {
 }
 
 //Book information
-string Book::toString() const {
+string Book::toString(const string& borrowerName) const { //arg ajouté
     string result = "Titre  : " + title + "\n"
                     + "Auteur : " + author + "\n"
                     + "ISBN   : " + isbn + "\n"
@@ -45,7 +45,7 @@ string Book::toString() const {
     if (isAvailable) {
         result += "Oui";
     } else {
-        result += "Non, emprunté par " + borrowerId;
+        result += "Non, emprunté par " + borrowerName; //modifié
     }
     return result;
 }
