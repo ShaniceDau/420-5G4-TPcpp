@@ -14,7 +14,19 @@ FileManager::FileManager(const string& booksFile, const string& usersFile)
 
 // Save all library data
 bool FileManager::saveLibraryData(Library& library) {
-    return saveBooksToFile(library) && saveUsersToFile(library);
+    bool succes = false;
+
+    if (booksFileName.empty() || usersFileName.empty()) { // modifié pour écrire un message explicite sans data
+        cout << "Sauvegarde impossible : aucun dossier de données n'a été indiqué au lancement.\n";
+    } else {
+        bool booksSaved = saveBooksToFile(library);
+        bool usersSaved = saveUsersToFile(library);
+        if (booksSaved && usersSaved) {
+            succes = true;
+        }
+    }
+
+    return succes;
 }
 
 // Load all library data
