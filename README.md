@@ -1,5 +1,6 @@
-#TP C++
-_Shanice Daudier_
+# TP C++
+
+**Nom** : _Shanice Daudier_
 
 ## Construire le projet
 Vous pouvez utiliser un dev container de base C++ de VScode.
