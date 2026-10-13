@@ -180,7 +180,11 @@ int main(int argc, char* argv[]) {
             case 5: { // Display All Books
                 //Ajout 
                 //choix du tri par l'utilisateur
-                string sortInput = getInput("Trier par : 1. Titre  2. Auteur  0. Aucun tri : ");
+                string sortInput = getInput("Trier par :\n"
+                                            "1. Titre\n"
+                                            "2. Auteur\n"
+                                            "0. Aucun tri\n"
+                                            "Votre choix : ");
                 int optionTri = 0;
                 if (sortInput == "1") {
                     optionTri = 1;
