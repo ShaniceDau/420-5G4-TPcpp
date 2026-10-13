@@ -4,11 +4,11 @@
 using namespace std;
 
 //Default constructor 
-Book::Book() : title(""), author(""), isbn(""), isAvailable() {}
+Book::Book() : title(""), author(""), isbn(""), isAvailable(true), borrowerId("") {} //modifié
 
 //Parametrized constructor
 Book::Book(const string& title, const string& author, const string& isbn)
-    : title(title), author(author), isbn(isbn) {}
+    : title(title), author(author), isbn(isbn), isAvailable(true), borrowerId("") {} //modifié
 
 //Getters
 string Book::getTitle() const { return title; }

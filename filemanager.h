@@ -11,6 +11,7 @@ class FileManager {
 private:
     string booksFileName;
     string usersFileName;
+    string logFileName; //Ajouté
 
 public:
     // Constructor
@@ -29,6 +30,11 @@ public:
     // Utility methods
     bool fileExists(const string& filename);
     void createBackup();
+
+    //Ajout 
+    //log d'activités
+    void logActivity(const string& action, const string& details);
+
 };
 
 #endif
