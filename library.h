@@ -27,6 +27,10 @@ public:
     vector<Book*> searchBooksByAuthor(const string& author);
     vector<Book*> getAvailableBooks();
     vector<Book*> getAllBooks();
+
+    // Tri
+    void triBooksByTitle(vector<Book*>& list);
+    void triBooksByAuthor(vector<Book*>& list);
     
     // User management
     void addUser(const User& user);
@@ -39,7 +43,7 @@ public:
     bool returnBook(const string& isbn);
     
     // Display methods
-    void displayAllBooks();
+    void displayAllBooks(int optionTri = 0);
     void displayAvailableBooks();
     void displayAllUsers();
     

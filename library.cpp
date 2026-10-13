@@ -91,6 +91,65 @@ vector<Book*> Library::getAllBooks() {
     return allBooks;
 }
 
+//Ajout
+//Convertir le texte en minuscule
+static string toLowerCase(const string& text) {
+    string resultat = text;
+
+    for( size_t i = 0; i < resultat.size(); ++i){
+        resultat[i] = tolower(resultat[i]);
+    }
+
+    return resultat;
+}
+
+//Ajout
+//Mettre en ordre alphabétique les livres selon les titres
+void Library::triBooksByTitle(vector<Book*>& list) {
+    sort(list.begin(), list.end(), [](Book* a, Book* b) {
+        string titreA = toLowerCase(a->getTitle());
+        string titreB = toLowerCase(b->getTitle());
+        bool estAvant;
+
+        if (titreA < titreB) {
+            estAvant = true;
+        } else {
+            estAvant = false;
+        }
+
+        return estAvant;
+    });
+}
+
+//Ajout
+//Si deux livres ont le meme auteur
+void Library::triBooksByAuthor(vector<Book*>& list) {
+    sort(list.begin(), list.end(), [](Book* a, Book* b) {
+        string auteurA = toLowerCase(a->getAuthor());
+        string auteurB = toLowerCase(b->getAuthor());
+        bool estAvant;
+
+        if (auteurA != auteurB) {
+            if (auteurA < auteurB) {
+                estAvant = true;
+            } else {
+                estAvant = false;
+            }
+        } else {
+            //Si meme auteur tri par titre
+            string titreA = toLowerCase(a->getTitle());
+            string titreB = toLowerCase(b->getTitle());
+            if (titreA < titreB) {
+                estAvant = true;
+            } else {
+                estAvant = false;
+            }
+        }
+
+        return estAvant;
+    });
+}
+
 // Add user to library
 void Library::addUser(const User& user) {
     users.push_back(make_unique<User>(user));
@@ -163,16 +222,25 @@ bool Library::returnBook(const string& isbn) {
 }
 
 // Display all books
-void Library::displayAllBooks() {
+void Library::displayAllBooks(int optionTri) {
     if (books.empty()) {
         cout << "Aucun livre dans la bibliothèque.\n";
         return;
     }
+
+    //Ajout
+    //trier une copie de la liste de pointeurs
+    vector<Book*> list = getAllBooks();
+    if (optionTri == 1) {
+        triBooksByTitle(list);
+    } else if (optionTri == 2) {
+        triBooksByAuthor(list);
+    }
     
     cout << "\n=== TOUS LES LIVRES ===\n";
-    for (size_t i = 0; i < books.size(); ++i) {
+    for (size_t i = 0; i < list.size(); ++i) { //Modifié :On parcourt la list pas books
         cout << "\nLivre " << (i + 1) << " :\n";
-        cout << books[i]->toString(getUserName(books[i]->getBorrowerId())) << "\n"; //modifié
+        cout << list[i]->toString(getUserName(list[i]->getBorrowerId())) << "\n"; //modifié
         cout << "-------------------------\n";
     }
 }

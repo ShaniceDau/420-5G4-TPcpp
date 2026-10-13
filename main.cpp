@@ -138,10 +138,13 @@ int main(int argc, char* argv[]) {
                 if (results.empty()) {
                     cout << "Aucun livre trouvé avec ce titre.\n";
                 } else {
+                    //Ajout: trier par titre
+                    library.triBooksByTitle(results);
+
                     cout << "\n=== RÉSULTATS DE RECHERCHE ===\n";
                     for (size_t i = 0; i < results.size(); ++i) {
                         cout << "\nRésultat " << (i + 1) << " :\n";
-                        cout << results[i]->toString() << "\n";
+                        cout << results[i]->toString(library.getUserName(results[i]->getBorrowerId())) << "\n";
                         cout << "-----------------------------\n";
                     }
                 }
@@ -156,22 +159,40 @@ int main(int argc, char* argv[]) {
                 if (results.empty()) {
                     cout << "Aucun livre trouvé de cet auteur.\n";
                 } else {
+                    //Ajout trier par auteur, puis par titre
+                    library.triBooksByAuthor(results);
+
                     cout << "\n=== RÉSULTATS DE RECHERCHE ===\n";
                     for (size_t i = 0; i < results.size(); ++i) {
                         cout << "\nRésultat " << (i + 1) << " :\n";
-                        cout << results[i]->toString() << "\n";
+                        cout << results[i]->toString(library.getUserName(results[i]->getBorrowerId())) << "\n";
                         cout << "-----------------------------\n";
                     }
                 }
                 pauseForInput();
                 break;
             }
-            
-            case 5: // Display All Books
-                library.displayAllBooks();
+            //AVANT
+            //case 5: // Display All Books
+                //library.displayAllBooks();
+                //pauseForInput();
+                //break;
+            case 5: { // Display All Books
+                //Ajout 
+                //choix du tri par l'utilisateur
+                string sortInput = getInput("Trier par : 1. Titre  2. Auteur  0. Aucun tri : ");
+                int optionTri = 0;
+                if (sortInput == "1") {
+                    optionTri = 1;
+                } else if (sortInput == "2") {
+                    optionTri = 2;
+                }
+                //Modifié 
+                //on passe l'option de tri à displayAllBooks
+                library.displayAllBooks(optionTri);
                 pauseForInput();
                 break;
-            
+            }
             case 6: // Display Available Books
                 library.displayAvailableBooks();
                 pauseForInput();
